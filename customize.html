@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmoothTransition 配置设置</title>
+  <link rel="stylesheet" href="css/customize.css">
+</head>
+<body>
+  <div class="header">
+    <div class="container header-content">
+      <div class="logo">SmoothTransition 配置设置</div>
+      <div class="header-actions">
+        <button id="importConfig" class="btn btn-secondary">导入配置</button>
+        <button id="exportConfig" class="btn btn-secondary">导出配置</button>
+        <button id="exportStyles" class="btn btn-secondary">导出样式</button>
+        <button id="exportStandalone" class="btn btn-primary">导出独立JS</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <input type="file" id="configFileInput" accept=".json" class="hidden">
+    <div class="main-content">
+      <div class="settings-column">
+        <div class="card">
+          <h2 class="card-title">基本设置</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="duration">过渡持续时间 (毫秒)</label>
+              <input type="number" id="duration" class="form-control" value="500" min="100" max="5000" step="100">
+              <div class="info-text">控制遮罩层动画的速度</div>
+            </div>
+            <div class="form-group">
+              <label for="minDisplayTime">最小显示时间 (毫秒)</label>
+              <input type="number" id="minDisplayTime" class="form-control" value="800" min="0" max="10000" step="100">
+              <div class="info-text">控制遮罩层至少显示的时间</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="easing">过渡缓动函数</label>
+            <select id="easing" class="form-control">
+              <option value="ease">ease (默认)</option>
+              <option value="linear">linear</option>
+              <option value="ease-in">ease-in</option>
+              <option value="ease-out">ease-out</option>
+              <option value="ease-in-out">ease-in-out</option>
+              <option value="cubic-bezier(0.4, 0, 0.2, 1)">Material Design</option>
+              <option value="cubic-bezier(0.7, 0, 0.3, 1)">Sharp</option>
+              <option value="cubic-bezier(0.34, 1.56, 0.64, 1)">Bounce</option>
+            </select>
+            <div class="info-text">控制遮罩层动画的速度曲线</div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h2 class="card-title">动画方向设置</h2>
+          
+          <div class="form-group">
+            <label>入场动画方向</label>
+            <div class="direction-preview">
+              <div class="direction-cell disabled"></div>
+              <div class="direction-cell" data-direction="top" data-type="entrance">
+                <i class="arrow arrow-up"></i>
+              </div>
+              <div class="direction-cell disabled"></div>
+              
+              <div class="direction-cell" data-direction="left" data-type="entrance">
+                <i class="arrow arrow-left"></i>
+              </div>
+              <div class="direction-cell disabled"></div>
+              <div class="direction-cell" data-direction="right" data-type="entrance">
+                <i class="arrow arrow-right"></i>
+              </div>
+              
+              <div class="direction-cell disabled"></div>
+              <div class="direction-cell active" data-direction="bottom" data-type="entrance">
+                <i class="arrow arrow-down"></i>
+              </div>
+              <div class="direction-cell disabled"></div>
+            </div>
+            <div class="info-text">选择遮罩层从哪个方向进入</div>
+          </div>
+          
+          <div class="form-group">
+            <label>退场动画方向</label>
+            <div class="direction-preview">
+              <div class="direction-cell disabled"></div>
+              <div class="direction-cell" data-direction="top" data-type="exit">
+                <i class="arrow arrow-up"></i>
+              </div>
+              <div class="direction-cell disabled"></div>
+              
+              <div class="direction-cell" data-direction="left" data-type="exit">
+                <i class="arrow arrow-left"></i>
+              </div>
+              <div class="direction-cell disabled"></div>
+              <div class="direction-cell" data-direction="right" data-type="exit">
+                <i class="arrow arrow-right"></i>
+              </div>
+              
+              <div class="direction-cell disabled"></div>
+              <div class="direction-cell active" data-direction="bottom" data-type="exit">
+                <i class="arrow arrow-down"></i>
+              </div>
+              <div class="direction-cell disabled"></div>
+            </div>
+            <div class="info-text">选择遮罩层从哪个方向退出</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title">样式设置</h2>
+          
+          <div class="tabs">
+            <div class="tab active" data-tab="overlay">遮罩层</div>
+            <div class="tab" data-tab="loader">加载指示器</div>
+            <div class="tab" data-tab="links">链接</div>
+          </div>
+          
+          <div class="tab-content active" data-tab="overlay">
+            <div class="form-group">
+              <label for="overlayBackground">遮罩层背景色</label>
+              <div class="color-picker">
+                <input type="color" id="overlayBackground" class="form-control" value="#000000">
+                <input type="text" id="overlayBackgroundText" class="form-control" value="rgba(0, 0, 0, 0.8)">
+                <div class="color-preview" id="overlayBackgroundPreview" data-bg-color="rgba(0, 0, 0, 0.8)"></div>
+              </div>
+              <div class="info-text">遮罩层的背景颜色，支持 rgba 格式</div>
+            </div>
+            
+            <div class="form-group">
+              <label for="overlayZIndex">遮罩层层级</label>
+              <input type="number" id="overlayZIndex" class="form-control" value="1000" min="1" max="9999">
+              <div class="info-text">控制遮罩层的 z-index 值</div>
+            </div>
+          </div>
+          
+          <div class="tab-content" data-tab="loader">
+            <div class="form-group">
+              <label>加载指示器类型</label>
+              <div class="loader-type-selection">
+                <div class="loader-option" data-type="dots">
+                  <div class="loader-preview">
+                    <div class="loader-dots">
+                      <div></div>
+                      <div></div>
+                      <div></div>
+                    </div>
+                  </div>
+                  <div class="loader-label">点状动画</div>
+                </div>
+                <div class="loader-option" data-type="spinner">
+                  <div class="loader-preview">
+                    <div class="loader-spinner"></div>
+                  </div>
+                  <div class="loader-label">旋转动画</div>
+                </div>
+                <div class="loader-option" data-type="pulse">
+                  <div class="loader-preview">
+                    <div class="loader-pulse"></div>
+                  </div>
+                  <div class="loader-label">脉冲动画</div>
+                </div>
+                <div class="loader-option" data-type="custom">
+                  <div class="loader-preview">
+                    <div class="loader-custom">
+                      <div class="custom-icon">⚙️</div>
+                    </div>
+                  </div>
+                  <div class="loader-label">自定义指示器</div>
+                </div>
+                <div class="loader-option" data-type="none">
+                  <div class="loader-preview">
+                    <div class="loader-none">无</div>
+                  </div>
+                  <div class="loader-label">无加载指示器</div>
+                </div>
+              </div>
+              <div class="info-text">选择加载指示器的类型</div>
+            </div>
+            
+            <div id="customLoaderPanel" class="custom-loader-panel">
+              <h3>自定义加载指示器</h3>
+              <div class="form-group">
+                <label for="customLoaderHTML">HTML结构</label>
+                <textarea id="customLoaderHTML" class="code-editor" placeholder="在这里输入HTML结构..." rows="5"></textarea>
+                <div class="info-text">自定义加载指示器的HTML结构</div>
+              </div>
+              
+              <div class="form-group">
+                <label for="customLoaderCSS">CSS样式</label>
+                <textarea id="customLoaderCSS" class="code-editor" placeholder="在这里输入CSS样式..." rows="10"></textarea>
+                <div class="info-text">自定义加载指示器的CSS样式，可包含动画</div>
+              </div>
+              
+              <div class="info-text mt-15">
+                <strong>提示:</strong> 您可以使用任何有效的HTML和CSS来创建自定义加载指示器。为了确保与过渡效果兼容，请遵循以下建议：
+                <ul>
+                  <li>在HTML中使用描述性的类名，避免使用ID</li>
+                  <li>所有的样式都应该在CSS字段中定义</li>
+                  <li>包含完整的动画定义（包括@keyframes）</li>
+                  <li>您的加载指示器将在遮罩层中居中显示</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="loaderColor">加载指示器颜色</label>
+              <div class="color-picker">
+                <input type="color" id="loaderColor" class="form-control" value="#4a6cf7">
+                <input type="text" id="loaderColorText" class="form-control" value="#4a6cf7">
+                <div class="color-preview" id="loaderColorPreview" data-bg-color="#4a6cf7"></div>
+              </div>
+              <div class="info-text">加载指示器的颜色</div>
+            </div>
+            
+            <div class="form-group">
+              <label for="loaderSize">加载指示器大小</label>
+              <input type="number" id="loaderSize" class="form-control" value="15" min="5" max="50">
+              <div class="info-text">加载指示器的大小（像素）</div>
+            </div>
+          </div>
+          
+          <div class="tab-content" data-tab="links">
+            <div class="form-group">
+              <label for="activeLinkColor">活动链接颜色</label>
+              <div class="color-picker">
+                <input type="color" id="activeLinkColor" class="form-control" value="#4a6cf7">
+                <input type="text" id="activeLinkColorText" class="form-control" value="#4a6cf7">
+                <div class="color-preview" id="activeLinkColorPreview" data-bg-color="#4a6cf7"></div>
+              </div>
+              <div class="info-text">当前活动链接的颜色</div>
+            </div>
+            
+            <div class="form-group">
+              <label for="activeLinkBold">活动链接加粗</label>
+              <select id="activeLinkBold" class="form-control">
+                <option value="true">是</option>
+                <option value="false">否</option>
+              </select>
+              <div class="info-text">当前活动链接是否加粗显示</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h2 class="card-title">功能设置</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cache">页面缓存</label>
+              <select id="cache" class="form-control">
+                <option value="true">启用</option>
+                <option value="false">禁用</option>
+              </select>
+              <div class="info-text">是否缓存已访问的页面内容</div>
+            </div>
+            <div class="form-group">
+              <label for="prefetch">链接预加载</label>
+              <select id="prefetch" class="form-control">
+                <option value="false">禁用</option>
+                <option value="true">启用</option>
+              </select>
+              <div class="info-text">是否预加载可见链接的页面内容</div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="timeout">请求超时时间 (毫秒)</label>
+            <input type="number" id="timeout" class="form-control" value="8000" min="1000" max="30000" step="1000">
+            <div class="info-text">页面加载超时时间</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="preview-column">
+        <div class="card">
+          <h2 class="card-title">实时预览</h2>
+          <div class="preview-container">
+            <div class="preview-content">
+              <h3>页面内容</h3>
+              <p>点击下方按钮测试过渡动画效果</p>
+              <p class="notice-text">注意：页面刷新后将重置所有配置，请记得导出您的配置</p>
+              <button id="testAnimation" class="btn">测试动画</button>
+            </div>
+            <div id="previewOverlay" class="preview-overlay" data-animation-state="none" data-direction="bottom">
+              <div class="loader-dots">
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group mt-15">
+            <button id="testAnimation2" class="btn">测试动画</button>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h2 class="card-title">配置代码</h2>
+          <div class="tabs">
+            <div class="tab active" data-tab="config">配置对象</div>
+            <div class="tab" data-tab="styles">样式代码</div>
+            <div class="tab" data-tab="json">JSON 数据</div>
+          </div>
+          
+          <div class="tab-content active" data-tab="config">
+            <pre id="configCode" class="code-block">// 配置代码将显示在这里</pre>
+          </div>
+          
+          <div class="tab-content" data-tab="styles">
+            <pre id="stylesCode" class="code-block">/* 样式代码将显示在这里 */</pre>
+          </div>
+          
+          <div class="tab-content" data-tab="json">
+            <pre id="jsonCode" class="code-block">// JSON 数据将显示在这里</pre>
+          </div>
+          
+          <div class="form-group mt-15">
+            <button id="copyConfig" class="btn btn-secondary">复制当前代码</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="toast" class="toast">配置已复制到剪贴板</div>
+  
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们 - 无刷跳转示例</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 导航栏 -->
+    <nav class="main-nav">
+      <div class="logo">无刷跳转示例</div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">首页</a></li>
+        <li><a href="about.html" class="nav-link active">关于我们</a></li>
+      </ul>
+    </nav>
+
+    <!-- 页面内容 -->
+    <div id="content">
+      <div class="about-header">
+        <h1>关于我们</h1>
+        <p class="subtitle">了解我们的团队和技术</p>
+      </div>
+
+      <div class="about-content">
+        <div class="about-image">
+          <div class="placeholder-image">团队照片</div>
+        </div>
+        <div class="about-text">
+          <h2>我们的故事</h2>
+          <p>我们是一支充满激情的开发团队，致力于创造更好的网页体验。无刷跳转技术是我们的最新成果，它可以让网站在页面之间切换时更加流畅自然。</p>
+          <p>传统的网页跳转会导致整个页面刷新，这不仅会中断用户体验，还会增加不必要的资源加载。我们的无刷跳转技术解决了这个问题，让页面切换如丝般顺滑。</p>
+          
+          <h2>核心技术</h2>
+          <ul class="tech-list">
+            <li>原生 JavaScript 实现，零依赖</li>
+            <li>自动拦截链接点击事件</li>
+            <li>支持浏览器前进/后退按钮</li>
+            <li>可自定义过渡动画效果</li>
+            <li>提供导航守卫功能</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <h2>返回首页</h2>
+        <p>查看更多功能演示</p>
+        <a href="index.html" class="cta-button nav-link">返回首页</a>
+      </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+      <p>&copy; 2024 无刷跳转示例. 保留所有权利。</p>
+    </footer>
+  </div>
+
+  <script type="module" src="../smooth-transition-auto.js"></script>
+</body>
+</html>
